@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <!--navigation bar-->
+  <div> 
+      <nav id="nav-bar">
+          <ul id="nav-list">
+              <li><a href="#home">HOME</a></li>
+              <li><a href="#quiz">QUIZ</a></li>
+              <li><a href="#contact">CONTACT</a></li>
+          </ul>
+      </nav>
+  </div>
+  <!--header-->
+  <header id="home">
+      <h1>DEV-DIVAS WEBSITE.</h1>
+      <h2>Our Mission</h2>
+      <p id="header-p">To educate the public about wastes that contribute to climate change and the declining health of the environment in Africa. The website is informative with a hint of fun incorporated through our quizzes! Enjoy learning with style!</p>
+  </header>
+  <main>
+      <!--main content-->
+      <h2 id="quiz">QUIZ</h2>
+      <div class="q-div">
+          <button class="q-button" onclick = "FW()"><a><h3>Food Waste</a></h3>
+          <p><a href="#">20% of the population in Africa is estimated to be undernourished. But did you know that Africa throws away almost 40% of the food it produces? Food waste is an environmental issue because of how majority of the wasted food ends up in landfills and rots, producing methane. The gas is an even more potent greenhouse gas that increases climate change.</a></p>
+          </button>
+      </div>
+      <div class="q-div">
+          <button  class="q-button" onclick="PP()"><h3><a>Plastic Pollution</a></h3>
+          <p><a href="#">It is the accumulation of plastic products in the environment. Not only is it an environmental concern, but it also constitutes a health and economic concern. Plastic waste can contaminate freshwater sources, not only killing aquatic animals but also leading to human deaths. Did you know that in 2015 Africa generated 19 million tonnes of plastic waste? Well, now you do.</a></p>
+          </button>
+      </div>
+      <div class="q-div">
+          <button class="q-button" onclick="HW()">
+          <h3><a href="#">Hazardous Waste</a></h3>
+          <p><a href="#">Unfortunately, Africa is treated as a toxic waste dump site. Hazardous waste is waste that contains organic or inorganic elements or compounds that are toxic and can react violently with other chemicals. Depending on the parts of Africa, the treatment of hazardous waste is poorly regulated. The easiest disposal route is a lanfill where the waste gets mixed with non-hazardous wastes. Reactions between the two occurs leading to serious health risks to the public and environment.</a></p>
+          </button>
+      </div>
+  </main>
+  <footer>
+     <h2 id="contact">CONTACT US</h2>
+     <ul>
+       <li>42, random street,Africa.</li>
+       <li><a href="#">supportcompanyname@gmail.com</a></li>
+     </ul>
+  </footer>
+</body>
+<script src="script.js"></script>
+</html>
