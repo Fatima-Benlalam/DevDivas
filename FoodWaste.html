@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Awareness Quiz </title>
+    <style>
+        body {
+            background-color: lightgreen;
+                /* Light green background */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .answers {
+            margin: 10px 0;
+        }
+        .answer-button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .answer-button:hover {
+            background-color: #45a049;
+        }
+        .feedback {
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Quiz on Food waste</h1>
+        <div id="question-container">
+            <div class="question" id="question">What percentage of food produced globally is wasted each year?</div>
+            <div class="answers">
+                <!-- Answer buttons will be dynamically generated here -->
+            </div>
+            <div class="feedback" id="feedback"></div>
+            <button class="answer-button" onclick="nextQuestion()">Next Question</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What percentage of food produced globally is wasted each year?",
+                answers: {
+                    'A': "14%",
+                    'B': "33%",
+                    'C': "2%",
+                    'D': "40%"
+                },
+                correctAnswer: 'B',
+                description: "Approximately one-third of all food produced for human consumption is wasted, which has significant environmental and economic impacts.",
+                tip: "Be mindful (and demure) of your food consumption and learn how to store food properly to extend its shelf life."
+            },
+            {
+                question: "What is the term used for food that is still safe to eat but is discarded by stores due to cosmetic imperfections?",
+                answers: {
+                    'A': "Expired food",
+                    'B': "Leftovers",
+                    'C': "Imperfect food",
+                    'D': "Surplus food"
+                },
+                correctAnswer: 'C',
+                description: "Did you know? Stores often reject fruits and vegetables that are misshapen or have minor imperfections to efficiently sell the better-looking ones, even though all are perfectly edible.",
+                tip: "Support markets or programs that sell imperfect produce to help reduce this type of waste."
+            },
+            {
+                question: "Which of the following fruits or vegetables is most commonly wasted due to being misunderstood or misused?",
+                answers: {
+                    'A': "Bananas",
+                    'B': "Apples",
+                    'C': "Watermelon",
+                    'D': "Avocado"
+                },
+                correctAnswer: 'D',
+                description: "Yep! Avocados are often discarded because people may not know how to tell if they're ripe or how to store them properly.",
+                tip: "Learn how to check for ripeness and consider storing avocados in the fridge if they’re not yet ripe or if they’re cut."
+            },
+            {
+          question: "What is one major cause of food waste in many African countries?",
+          answers: {
+              'A': "Excessive food production",
+              'B': "Lack of storage infrastructure",
+              'C': "Food packaging",
+              'D': "Underconsumption"
+          },
+          correctAnswer: 'B',
+          description: " In many African countries, inadequate storage facilities lead to significant food spoilage before food can even reach consumers.",
+            tip: 'Support projects and organizations that work to improve storage and transportation infrastructure to reduce food loss.'} // Add more questions here in the same format
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question').innerText = question.question;
+
+            const answersDiv = document.querySelector('.answers');
+            answersDiv.innerHTML = ''; // Clear previous answers
+
+            for (const [key, value] of Object.entries(question.answers)) {
+                const button = document.createElement('button');
+                button.className = 'answer-button';
+                button.textContent = `${key}) ${value}`;
+                button.onclick = () => checkAnswer(key);
+                answersDiv.appendChild(button);
+            }
+
+            document.getElementById('feedback').innerHTML = ''; // Clear feedback
+        }
+
+        function checkAnswer(selected) {
+            const question = questions[currentQuestionIndex];
+            if (selected === question.correctAnswer) {
+                document.getElementById('feedback').innerHTML = `
+                    <strong>Correct!</strong><br>
+                    ${question.description}<br>
+                    <em>Tip:</em> ${question.tip}
+                `;
+            } else {
+                document.getElementById('feedback').innerHTML = '<strong>Try again!</strong>';
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                document.getElementById('feedback').innerHTML = '<strong>Quiz Completed!</strong>';
+            }
+        }
+
+        // Initialize the first question
+        displayQuestion();
+    </script>
+</body>
+<script src="script.js>"</script>
+</html>
