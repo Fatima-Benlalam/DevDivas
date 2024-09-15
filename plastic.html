@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Awareness Quiz </title>
+    <style>
+        body {
+            background-color: lightgreen;
+            /* Light green background */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .answers {
+            margin: 10px 0;
+        }
+        .answer-button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .answer-button:hover {
+            background-color: #45a049;
+        }
+        .feedback {
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Quiz on Plastic Pollution</h1>
+        <div id="question-container">
+            <div class="question" id="question">What is the most common type of plastic found in marine environments?</div>
+            <div class="answers">
+                <!-- Answer buttons will be dynamically generated here -->
+            </div>
+            <div class="feedback" id="feedback"></div>
+            <button class="answer-button" onclick="nextQuestion()">Next Question</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What percentage of plastic waste is actually recycled globally?",
+                answers: {
+                    'A': "10%",
+                    'B': "20%",
+                    'C': "50%",
+                    'D': "60%"
+                },
+                correctAnswer: 'A',
+                description: "Unfortunately, you're right!! Only about 10% of plastic waste is effectively recycled, with much of the rest ending up in landfills or the environment. Plastic debris in oceans and rivers especially pose a threat to marine life.",
+                tip: "Use reusable bags, bottles, and containers to reduce the amount of waste and support recycling programs to improve recycling rates."
+            },
+            {
+                question: "Which of the following is a major source of microplastics in the ocean?",
+                answers: {
+                    'A': "Plastic bags",
+                    'B': "Plastic bottles",
+                    'C': "Synthetic fibers from clothing",
+                    'D': "Plastic straws"
+                },
+                correctAnswer: 'C',
+                description: "Yes, can you believe it ?! Microplastics often come from the shedding of synthetic fibers during washing of clothes made from polyester, nylon, and other plastics.",
+                tip: "Choose natural fiber clothing (cotton, wool,linen..) to minimize microplastic pollution, and encourage others to do the same!"
+            },
+            {
+                question: "What is the estimated time it takes for a plastic bottle to decompose in the environment?",
+                answers: {
+                    'A': "50 years",
+                    'B': "100 years",
+                    'C': "200 years",
+                    'D': "500 years"
+                },
+                correctAnswer: 'D',
+                description: "Used for a day, but lasts 500 years to break down. Even then, they often degrade into smaller microplastics that persist in the environment.",
+                tip: "Reduce plastic bottle use by switching to reusable bottles, and advocate for sustainable and eco-friendly products."
+            },
+            {
+                question: "Which African country has implemented a successful ban on plastic bags to combat plastic pollution?",
+                answers: {
+                    'A': "Nigeria",
+                    'B': "Kenya",
+                    'C': "Morocco",
+                    'D': "Egypt"
+                },
+                correctAnswer: 'B',
+                description: "Kenya has been noted for its strict ban on plastic bags 2017-2020, which has significantly reduced plastic waste and polluution in the country.",
+                tip: "Support similar policices in your country to help reduce plastic waste and promote sustainable alternatives."
+            },
+            {
+          question: "What is one major cause of food waste in many African countries?",
+          answers: {
+              'A': "Excessive food production",
+              'B': "Lack of storage infrastructure",
+              'C': "Food packaging",
+              'D': "Underconsumption"
+          },
+          correctAnswer: 'B',
+          description: "In many African countries, inadequate storage facilities lead to significant food spoilage and waste before food can reach consumers.",
+            tip: 'Support projects and organizations that work to improve storage and transportation infrastructure to reduce food loss.'} // Add more questions here in the same format
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question').innerText = question.question;
+
+            const answersDiv = document.querySelector('.answers');
+            answersDiv.innerHTML = ''; // Clear previous answers
+
+            for (const [key, value] of Object.entries(question.answers)) {
+                const button = document.createElement('button');
+                button.className = 'answer-button';
+                button.textContent = `${key}) ${value}`;
+                button.onclick = () => checkAnswer(key);
+                answersDiv.appendChild(button);
+            }
+
+            document.getElementById('feedback').innerHTML = ''; // Clear feedback
+        }
+
+        function checkAnswer(selected) {
+            const question = questions[currentQuestionIndex];
+            if (selected === question.correctAnswer) {
+                document.getElementById('feedback').innerHTML = `
+                    <strong>Correct!</strong><br>
+                    ${question.description}<br>
+                    <em>Tip:</em> ${question.tip}
+                `;
+            } else {
+                document.getElementById('feedback').innerHTML = '<strong>Try again!</strong>';
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                document.getElementById('feedback').innerHTML = '<strong>Quiz Completed!</strong>';
+            }
+        }
+
+        // Initialize the first question
+        displayQuestion();
+    </script>
+</body>
+</html>
