@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Awareness Quiz </title>
+    <style>
+        body {
+            background-color: lightgreen; /* Light green background */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .answers {
+            margin: 10px 0;
+        }
+        .answer-button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .answer-button:hover {
+            background-color: #45a049;
+        }
+        .feedback {
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Quiz on Hazardous waste</h1>
+        <div id="question-container">
+            <div class="question" id="question">Which type of hazardous waste can cause serious health problems if ingested or inhaled?</div>
+            <div class="answers">
+                <!-- Answer buttons will be dynamically generated here -->
+            </div>
+            <div class="feedback" id="feedback"></div>
+            <button class="answer-button" onclick="nextQuestion()">Next Question</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Which type of hazardous waste can cause serious health problems if ingested or inhaled?",
+                answers: {
+                    'A': "Paint and solvents",
+                    'B': "Expired medication",
+                    'C': "Electronic waste",
+                    'D': "Batteries"
+                },
+                correctAnswer: 'A',
+                description: "Yup! Paint and solvents contain volatile organic compounds (VOCs) and other toxic substances that can pose serious health risks if inhaled or ingested.",
+                tip: "Store paint and solvents in a well-ventilated area and use them according to manufacturer instructions. Dispose of them through designated hazardous waste programs."
+            },
+            {
+                question: "What is one major environmental concern associated with improper disposal of hazardous waste?",
+                answers: {
+                    'A': "Air pollution",
+                    'B': "Soil contamination",
+                    'C': "Water pollution",
+                    'D': "All of the above"
+                },
+                correctAnswer: 'D',
+                description: "Unfortunately, all of them. Improper disposal of hazardous waste can lead to air, soil, and water pollution, posing risks to ecosystems, wildlife, and human health.",
+                tip: "Always use proper disposal methods for hazardous waste, which are written on their packages, to prevent environmental contamination."
+            },
+            {
+                question: "What is a common source of hazardous waste in many African countries?",
+                answers: {
+                    'A': "e-waste (electronic)",
+                    'B': "Chemicals",
+                    'C': "Paper and cardboard",
+                    'D': "Glass bottles"
+                },
+                correctAnswer: 'A',
+                description: "E-waste is a significant issue in Africa due to the improper disposal of old electronics, which can release harmful chemicals and heavy metals into the environment.This lead in turn to emission of GHG, harmful greenhouse gases.",
+                tip: "Support e-waste recycling programs and initiatives that provide safe disposal methods and recycling opportunities for electronic devices."
+            },
+            {
+          question: "What are the health risks associated with improper disposal of hazardous waste in informal dumpsites in Africa?",
+          answers: {
+              'A': "Skin and respiratory diseases ",
+              'B': "Bone diseases",
+              'C': "Soil infertility",
+              'D': "None"
+          },
+          correctAnswer: 'A',
+          description: " Informal dumpsites often expose communities to hazardous chemicals and pollutants, leading to a range of health issues, including respiratory and skin diseases.",
+            tip: 'Support efforts to improve waste management infrastructure and promote safe disposal practices to reduce health risks in affected communities.'} // Add more questions here in the same format
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question').innerText = question.question;
+
+            const answersDiv = document.querySelector('.answers');
+            answersDiv.innerHTML = ''; // Clear previous answers
+
+            for (const [key, value] of Object.entries(question.answers)) {
+                const button = document.createElement('button');
+                button.className = 'answer-button';
+                button.textContent = `${key}) ${value}`;
+                button.onclick = () => checkAnswer(key);
+                answersDiv.appendChild(button);
+            }
+
+            document.getElementById('feedback').innerHTML = ''; // Clear feedback
+        }
+
+        function checkAnswer(selected) {
+            const question = questions[currentQuestionIndex];
+            if (selected === question.correctAnswer) {
+                document.getElementById('feedback').innerHTML = `
+                    <strong>Correct!</strong><br>
+                    ${question.description}<br>
+                    <em>Tip:</em> ${question.tip}
+                `;
+            } else {
+                document.getElementById('feedback').innerHTML = '<strong>Try again!</strong>';
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                document.getElementById('feedback').innerHTML = '<strong>Quiz Completed!</strong>';
+            }
+        }
+
+        // Initialize the first question
+        displayQuestion();
+    </script>
+</body>
+</html>
